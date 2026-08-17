@@ -39,11 +39,6 @@
     "node": ">=22",
     "npm": ">=10"
   },
-  "overrides": {
-    "tsup": {
-      "esbuild": "0.27.2"
-    }
-  },
   "keywords": [
     "matrix",
     "connected-components",
@@ -75,6 +70,7 @@
     "@types/node": "^26.2.0",
     "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^10.8.1",
+    "esbuild": "0.27.2",
     "prettier": "^3.9.6",
     "publint": "^0.3.23",
     "tsup": "^8.5.1",
