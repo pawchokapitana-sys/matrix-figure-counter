@@ -1,0 +1,86 @@
+{
+  "name": "matrix-figure-counter",
+  "version": "1.0.0",
+  "description": "Count orthogonally connected figures in a boolean matrix.",
+  "author": "pawchokapitana-sys",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pawchokapitana-sys/matrix-figure-counter.git"
+  },
+  "homepage": "https://github.com/pawchokapitana-sys/matrix-figure-counter#readme",
+  "bugs": {
+    "url": "https://github.com/pawchokapitana-sys/matrix-figure-counter/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  },
+  "overrides": {
+    "tsup": {
+      "esbuild": "0.27.2"
+    }
+  },
+  "keywords": [
+    "matrix",
+    "connected-components",
+    "flood-fill",
+    "typescript"
+  ],
+  "scripts": {
+    "build": "tsup && node scripts/normalize-build.mjs",
+    "prepack": "npm run build",
+    "typecheck": "tsc --project tsconfig.lib.json --noEmit && tsc --project tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run tests/unit tests/randomized",
+    "test:coverage": "vitest run --coverage tests/unit tests/randomized",
+    "test:stress": "vitest run tests/stress",
+    "test:performance": "vitest run tests/performance && vitest bench --run",
+    "test:package": "node scripts/test-packed-package.mjs",
+    "test:package:node": "node scripts/test-packed-package.mjs --no-browser",
+    "lint:package": "publint && attw --pack . --profile node16",
+    "pack:check": "npm pack --dry-run",
+    "verify:fast": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage",
+    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run test:stress && npm run build && npm run pack:check && npm run lint:package && npm run test:package && npm run test:performance"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.8.1",
+    "prettier": "^3.9.6",
+    "publint": "^0.3.23",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.67.0",
+    "vite": "^8.2.1",
+    "vitest": "^4.1.10"
+  }
+}
